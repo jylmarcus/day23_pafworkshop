@@ -3,11 +3,14 @@ package paf.visa.day23_pafworkshop.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import paf.visa.day23_pafworkshop.model.Order;
-import paf.visa.day23_pafworkshop.model.OrderList;
 import paf.visa.day23_pafworkshop.repository.OrderRepository;
 
 @Service
@@ -23,8 +26,9 @@ public class OrderService {
 
     public List<Order> getOrderById(String orderId) {
         RestTemplate template = new RestTemplate();
-        OrderList result = template.getForObject(API_URL + "/" + orderId, OrderList.class);
-        return result.getOrderList();
+        HttpEntity<String> entity = new HttpEntity<String>("parameters");
+        ResponseEntity<List<Order>> result = template.exchange(API_URL + "/" + orderId, HttpMethod.GET, entity, new ParameterizedTypeReference<List<Order>>(){});
+        return result.getBody();
 
     }
 

@@ -23,7 +23,7 @@ public class OrderRepository {
     "join products prod on prod.id = ordd.product_id " +
     "where ord.id = ?";
 
-    private final String selectAllOrderIds = "select ord.id as id from orders ord " +
+    private final String selectAllOrderIds = "select distinct ord.id as id from orders ord " +
     "join order_details ordd on ord.id = ordd.order_id " + 
     "join products prod on prod.id = ordd.product_id ";
 

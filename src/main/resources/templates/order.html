@@ -7,7 +7,7 @@
     <title>Request order details</title>
 </head>
 <body>
-    <form th:action="@{/order/total}">
+    <form th:action="@{/order/request}">
         <label for="orderSelection">Select an order:</label>
         <select th:name="orderId" id="orderSelection">
             <option th:each="order: ${orderList}" th:value="${order}" th:text="${order}"></option>

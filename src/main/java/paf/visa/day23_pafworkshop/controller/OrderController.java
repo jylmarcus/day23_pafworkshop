@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import paf.visa.day23_pafworkshop.model.OrderList;
+import paf.visa.day23_pafworkshop.model.Order;
 import paf.visa.day23_pafworkshop.service.OrderService;
 
 @Controller
@@ -24,11 +24,10 @@ public class OrderController {
         return "order";
     }
 
-    @GetMapping("/order/total/")
+    @GetMapping("/order/request")
     public String getOrder(@RequestParam(name="orderId") String orderId, Model model) {
-        OrderList orders = new OrderList();
-        orders.setOrderList(orderSvc.getOrderById(orderId));
-        model.addAttribute("orderList", orders.getOrderList());
+        List<Order> orders = orderSvc.getOrderById(orderId);
+        model.addAttribute("orderList", orders);
         return "showOrders";
     }
 }
