@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="|Order: ${orderList[0].orderId}|"></title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Order Id</th>
+            <th>Order Date</th>
+            <th>Customer Id</th>
+            <th>Product Id</th>
+            <th>Total</th>
+            <th>Cost Price</th>
+        </tr>
+        <tr th:each="order :${orderList}">
+            <td th:text="${order.orderId}"></td>
+            <td th:text="${order.orderDate}"></td>
+            <td th:text="${order.custId}"></td>
+            <td th:text="${order.prodId}"></td>
+            <td th:text="${order.total}"></td>
+            <td th:text="${order.cost}"></td>
+        </tr>
+    </table>
+</body>
+</html>
